@@ -1,0 +1,69 @@
+<script>
+
+// github.com/qntm/braille-encode
+
+// This is the magical lookup table.
+var encodechar = (
+	"⠀⢀⠠⢠⠐⢐⠰⢰⠈⢈⠨⢨⠘⢘⠸⢸" +
+	"⡀⣀⡠⣠⡐⣐⡰⣰⡈⣈⡨⣨⡘⣘⡸⣸" +
+	"⠄⢄⠤⢤⠔⢔⠴⢴⠌⢌⠬⢬⠜⢜⠼⢼" +
+	"⡄⣄⡤⣤⡔⣔⡴⣴⡌⣌⡬⣬⡜⣜⡼⣼" +
+	"⠂⢂⠢⢢⠒⢒⠲⢲⠊⢊⠪⢪⠚⢚⠺⢺" +
+	"⡂⣂⡢⣢⡒⣒⡲⣲⡊⣊⡪⣪⡚⣚⡺⣺" +
+	"⠆⢆⠦⢦⠖⢖⠶⢶⠎⢎⠮⢮⠞⢞⠾⢾" +
+	"⡆⣆⡦⣦⡖⣖⡶⣶⡎⣎⡮⣮⡞⣞⡾⣾" +
+	"⠁⢁⠡⢡⠑⢑⠱⢱⠉⢉⠩⢩⠙⢙⠹⢹" +
+	"⡁⣁⡡⣡⡑⣑⡱⣱⡉⣉⡩⣩⡙⣙⡹⣹" +
+	"⠅⢅⠥⢥⠕⢕⠵⢵⠍⢍⠭⢭⠝⢝⠽⢽" +
+	"⡅⣅⡥⣥⡕⣕⡵⣵⡍⣍⡭⣭⡝⣝⡽⣽" +
+	"⠃⢃⠣⢣⠓⢓⠳⢳⠋⢋⠫⢫⠛⢛⠻⢻" +
+	"⡃⣃⡣⣣⡓⣓⡳⣳⡋⣋⡫⣫⡛⣛⡻⣻" +
+	"⠇⢇⠧⢧⠗⢗⠷⢷⠏⢏⠯⢯⠟⢟⠿⢿" +
+	"⡇⣇⡧⣧⡗⣗⡷⣷⡏⣏⡯⣯⡟⣟⡿⣿"
+).split("");
+
+// Invert it for decoding purposes.
+var decodechar = {};
+encodechar.forEach(function(ch, i) {
+	decodechar[ch] = String.fromCharCode(i);
+});
+
+	var encode = function(buf) {
+		var str = "";
+		buf.split("").forEach(function(ch) {
+        if (ch == "\n")
+        str += "\n"; else
+			str += encodechar[ch.charCodeAt(0)];
+		});
+		return str;
+	}
+	
+	var decode = function(str) {
+		var buf = "";
+		str.split("").forEach(function(ch) {
+			if(!(ch in decodechar)) {
+				buf += ch;
+			} else
+			buf += (decodechar[ch]);
+		});
+		return buf;
+	}
+    var run = function() {
+    var inn = document.getElementById("in");
+    var out = document.getElementById("out");
+    out.value =(encode(inn.value ));
+    }
+    var run2 = function() {
+    var inn = document.getElementById("in");
+    var out = document.getElementById("out");
+    out.value =(decode(inn.value ));
+    }
+
+document.write("<p>"+encode("<b>LESSON 1: PRINT HELLOWORLD USING VARIABLES</b><br><br>")+"</p>");
+</script>
+
+<p onclick="run()">run</p>
+<p onclick="run2()">run2</p>
+<textarea  id="in" type="text"/></textarea>
+</br>
+<textarea  id="out" type="text"/></textarea>
