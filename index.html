@@ -112,9 +112,7 @@
 }
   
 header {
-  padding: 20px;
-  /*display: flex;*/
-  align-items: baseline;
+  padding: 1em;
 }
 
 
@@ -128,6 +126,7 @@ header {
 <header>
   <a href="#main-menu" class="menu-toggle">
     <img src="bars.svg" style="width:3em;height:3em;"/>
+    &nbsp;
     <h1 class="logo">l1nks</h1>
   </a>
   
@@ -143,7 +142,7 @@ header {
   <a href="#main-menu-toggle" class="backdrop" hidden></a>
 </header>
 
-<body height="100%" width="100%">
-<iframe name="imain" src="main.html" style="width:100%; height:100%;" height="100%" width="100%"/>
+<body style="margin:0">
+<iframe name="imain" src="main.html" style="width:100%; height:100%;" height="100vw" width="100vh"/>
 </body>
 </html>
