@@ -28,7 +28,7 @@ encodechar.forEach(function(ch, i) {
 	decodechar[ch] = String.fromCharCode(i);
 });
 
-var decode = function(str) {
+function decode (str) {
 	var buf = "";
 	str.split("").forEach(function(ch) {
 		if(!(ch in decodechar)) {
@@ -40,7 +40,7 @@ var decode = function(str) {
 }
 
 var curr_pos = 0;
-    var run2 = function() {
+    function run2() {
     var data = document.getElementById("data");
 	    
     var i;
