@@ -48,7 +48,7 @@ function replaceAt(string, index, replace) {
 	    
     var i;
     for(i = 0; i < 8 && curr_pos < data.textContent.length; i++, curr_pos++) {
-    	replaceAt(data.textContent,curr_pos, decode(data.textContent.substr(curr_pos,1)) );
+    	data.textContent = replaceAt(data.textContent,curr_pos, decode(data.textContent.substr(curr_pos,1)) );
     }
     
     if (curr_pos < data.textContent.length)
