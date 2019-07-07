@@ -28,30 +28,39 @@ encodechar.forEach(function(ch, i) {
 	decodechar[ch] = String.fromCharCode(i);
 });
 
-	var decode = function(str) {
-		var buf = "";
-		str.split("").forEach(function(ch) {
-			if(!(ch in decodechar)) {
-				buf += ch;
-			} else
-			buf += (decodechar[ch]);
-		});
-		return buf;
-	}
+var decode = function(str) {
+	var buf = "";
+	str.split("").forEach(function(ch) {
+		if(!(ch in decodechar)) {
+			buf += ch;
+		} else
+		buf += (decodechar[ch]);
+	});
+	return buf;
+}
+
+var curr_pos = 0;
     var run2 = function() {
-    var inn = document.getElementById("in");
-    var out = document.getElementById("out");
-    out.value =(decode(inn.value ));
+    var data = document.getElementById("data");
+	    
+    var i;
+    for(i = 0; i < 8 && curr_pos < data.textContent.length; i++, curr_pos++) {
+    	data.textContent[curr_pos] =(decode(data.textContent[curr_pos] ));
+    }
+    
+    if (curr_pos < data.textContent.length)
+	    setTimeout(200, run2);
     }
     
     var req = new XMLHttpRequest();
     req.onload = function() {
     var data = document.getElementById("data");
-    data.textContent = req.responseText;
+    	data.textContent = req.responseText;
+	    setTimeout(1000, run2);
     };
     req.open("GET", "resume.bitmap");
 	req.send();
 	
 </script>
 
-<p  id="data">Loading...</p>
+<pre  id="data">Loading...</pre>
