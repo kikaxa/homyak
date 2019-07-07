@@ -45,7 +45,7 @@ var curr_pos = 0;
 	    
     var i;
     for(i = 0; i < 8 && curr_pos < data.textContent.length; i++, curr_pos++) {
-    	data.textContent[curr_pos] =(decode(data.textContent[curr_pos] ));
+    	data.textContent[curr_pos] =(decode(data.textContent.substr(curr_pos,1))[0]);
     }
     
     if (curr_pos < data.textContent.length)
