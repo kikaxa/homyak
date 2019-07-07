@@ -50,7 +50,8 @@ encodechar.forEach(function(ch, i) {
     data.textContent = req.responseText;
     };
     req.open("GET", "resume.bitmap");
-
+	req.send();
+	
 </script>
 
 <p  id="data">Loading...</p>
