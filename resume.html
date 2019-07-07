@@ -1,0 +1,56 @@
+<script>
+
+// github.com/qntm/braille-encode
+
+// This is the magical lookup table.
+var encodechar = (
+	"⠀⢀⠠⢠⠐⢐⠰⢰⠈⢈⠨⢨⠘⢘⠸⢸" +
+	"⡀⣀⡠⣠⡐⣐⡰⣰⡈⣈⡨⣨⡘⣘⡸⣸" +
+	"⠄⢄⠤⢤⠔⢔⠴⢴⠌⢌⠬⢬⠜⢜⠼⢼" +
+	"⡄⣄⡤⣤⡔⣔⡴⣴⡌⣌⡬⣬⡜⣜⡼⣼" +
+	"⠂⢂⠢⢢⠒⢒⠲⢲⠊⢊⠪⢪⠚⢚⠺⢺" +
+	"⡂⣂⡢⣢⡒⣒⡲⣲⡊⣊⡪⣪⡚⣚⡺⣺" +
+	"⠆⢆⠦⢦⠖⢖⠶⢶⠎⢎⠮⢮⠞⢞⠾⢾" +
+	"⡆⣆⡦⣦⡖⣖⡶⣶⡎⣎⡮⣮⡞⣞⡾⣾" +
+	"⠁⢁⠡⢡⠑⢑⠱⢱⠉⢉⠩⢩⠙⢙⠹⢹" +
+	"⡁⣁⡡⣡⡑⣑⡱⣱⡉⣉⡩⣩⡙⣙⡹⣹" +
+	"⠅⢅⠥⢥⠕⢕⠵⢵⠍⢍⠭⢭⠝⢝⠽⢽" +
+	"⡅⣅⡥⣥⡕⣕⡵⣵⡍⣍⡭⣭⡝⣝⡽⣽" +
+	"⠃⢃⠣⢣⠓⢓⠳⢳⠋⢋⠫⢫⠛⢛⠻⢻" +
+	"⡃⣃⡣⣣⡓⣓⡳⣳⡋⣋⡫⣫⡛⣛⡻⣻" +
+	"⠇⢇⠧⢧⠗⢗⠷⢷⠏⢏⠯⢯⠟⢟⠿⢿" +
+	"⡇⣇⡧⣧⡗⣗⡷⣷⡏⣏⡯⣯⡟⣟⡿⣿"
+).split("");
+
+// Invert it for decoding purposes.
+var decodechar = {};
+encodechar.forEach(function(ch, i) {
+	decodechar[ch] = String.fromCharCode(i);
+});
+
+	var decode = function(str) {
+		var buf = "";
+		str.split("").forEach(function(ch) {
+			if(!(ch in decodechar)) {
+				buf += ch;
+			} else
+			buf += (decodechar[ch]);
+		});
+		return buf;
+	}
+    var run2 = function() {
+    var inn = document.getElementById("in");
+    var out = document.getElementById("out");
+    out.value =(decode(inn.value ));
+    }
+    
+    var req = new XMLHttpRequest();
+    req.onload = function() {
+    var data = document.getElementById("data");
+    data.textContent = req.responseText;
+    };
+    req.open("GET", "resume.bitmap");
+
+</script>
+
+<p  id="data">Loading...</p>
