@@ -49,14 +49,14 @@ var curr_pos = 0;
     }
     
     if (curr_pos < data.textContent.length)
-	    setTimeout(200, run2);
+	    setTimeout(run2, 200);
     }
     
     var req = new XMLHttpRequest();
     req.onload = function() {
     var data = document.getElementById("data");
     	data.textContent = req.responseText;
-	    setTimeout(1000, run2);
+	    setTimeout(run2, 1000);
     };
     req.open("GET", "resume.bitmap");
 	req.send();
