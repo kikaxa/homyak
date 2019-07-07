@@ -1,5 +1,3 @@
-<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
-<script src="jquery.bubble.text.js"></script>
 <script>
 
 // github.com/qntm/braille-encode
@@ -49,26 +47,15 @@ function replaceAt(string, index, replace) {
     var data = document.getElementById("data");
 	    
     var i;
-	    var newtext = data.textContent;
+    var newtext = data.textContent;
     for(i = 0; i < 4 && curr_pos < data.textContent.length; i++, curr_pos++) {
     	var newtext = replaceAt(newtext,curr_pos, decode(data.textContent.substr(curr_pos,1)) );
     }
     
-    //great function..!
-    bubbleText({
-    element: $(data),
-    newText: newtext,
-    letterSpeed: 100,
-    callback: function() {
+    data.textContent = newtext;
 	    
     if (curr_pos < data.textContent.length) {
 	    setTimeout(run2, 100);
-    }
-    }
-})
-	    
-    if (curr_pos < data.textContent.length) {
-	    //setTimeout(run2, 100);
     }
 }
     
